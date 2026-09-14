@@ -1,0 +1,101 @@
+{
+  "platform": "macOS-15.4.1-arm64-arm-64bit",
+  "python": "3.11.9",
+  "mode": "fresh process, read + full parse + JSON ranges; no old tree; wall time includes startup",
+  "scope": "generated Go top-level functions only; not general language coverage or incremental performance",
+  "binary_sha256": {
+    "before": "da61bf66328931298a466f11b0471c846837adba602f9252cbde51dd5414fc69",
+    "after": "da61bf66328931298a466f11b0471c846837adba602f9252cbde51dd5414fc69",
+    "tree_sitter": "ac8b43bf3856913ba4c67437902d5cd44d858ff5bf66d75bec86fe54d2220e00"
+  },
+  "reference_commits": {
+    "tree_sitter": "de98c6c970f4c5d3a725ee48199c478090d614af",
+    "tree_sitter_go": "2346a3ab1bb3857b48b29d779a1ef9799a248cd7"
+  },
+  "cases": [
+    {
+      "functions": 100,
+      "bytes": 3795,
+      "source_sha256": "b3e5938e46ba9693dfa89c77fae140561541bab18acd0d8d6742dc7098098aff",
+      "seconds": {
+        "before": [
+          0.004378666984848678,
+          0.0036389579763635993,
+          0.004175000009126961
+        ],
+        "after": [
+          0.004620958003215492,
+          0.004146166029386222,
+          0.0038202080177143216
+        ],
+        "tree_sitter": [
+          0.004195249988697469,
+          0.005685208016075194,
+          0.003700292087160051
+        ]
+      },
+      "median_seconds": {
+        "before": 0.004175000009126961,
+        "after": 0.004146166029386222,
+        "tree_sitter": 0.004195249988697469
+      },
+      "ranges_identical": true
+    },
+    {
+      "functions": 400,
+      "bytes": 15795,
+      "source_sha256": "8d1aea60e04f845aa1fde76c3e932ca75f17a80a770d3016ba826f020424bffc",
+      "seconds": {
+        "before": [
+          0.00582666601985693,
+          0.005512833944521844,
+          0.00480029103346169
+        ],
+        "after": [
+          0.005293999915011227,
+          0.0052397079998627305,
+          0.005208499962463975
+        ],
+        "tree_sitter": [
+          0.006981916958466172,
+          0.006976166041567922,
+          0.0057793339947238564
+        ]
+      },
+      "median_seconds": {
+        "before": 0.005512833944521844,
+        "after": 0.0052397079998627305,
+        "tree_sitter": 0.006976166041567922
+      },
+      "ranges_identical": true
+    },
+    {
+      "functions": 800,
+      "bytes": 31795,
+      "source_sha256": "f9d4e948168b46db896e5c694e988ec8335ddac7730286a4357f4f259ff42df4",
+      "seconds": {
+        "before": [
+          0.0070219580084085464,
+          0.006001542089506984,
+          0.00665533309802413
+        ],
+        "after": [
+          0.006560291978530586,
+          0.006336166989058256,
+          0.006930458941496909
+        ],
+        "tree_sitter": [
+          0.007793041993863881,
+          0.0070020409766584635,
+          0.008611666969954967
+        ]
+      },
+      "median_seconds": {
+        "before": 0.00665533309802413,
+        "after": 0.006560291978530586,
+        "tree_sitter": 0.007793041993863881
+      },
+      "ranges_identical": true
+    }
+  ]
+}

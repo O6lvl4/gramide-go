@@ -56,7 +56,9 @@ process floor, 0.2 ms of Rust runtime that a C binary does not pay
 ([evidence](docs/evidence/symbol-walk-ladder.json), `bench/symbols.py`).
 When this package was extracted the same read took 8.2, 18.7 and 33.7 ms
 ([then](docs/evidence/symbol-walk-benchmark.json)); the difference is the
-engine's row rendering and this grammar's expression ladder, below.
+engine's row rendering, its packed lexer, and this grammar's expression
+ladder, below. With the packed lexer the 400-function read is three
+quarters of tree-sitter's time ([evidence](docs/evidence/symbol-walk-lexer.json)).
 
 ## How it is written
 
@@ -73,7 +75,9 @@ engine's row rendering and this grammar's expression ladder, below.
   `{`. The five binary levels are one `prec` ladder, lowest first: written as
   nested folds, reaching an operand cost a rule visit per level, and folding
   them took the whole of `GOROOT/src` from 132 to 154 MB/s with the same 32
-  files rejected ([evidence](docs/evidence/corpus-check-go-ladder.json)). A
+  files rejected ([evidence](docs/evidence/corpus-check-go-ladder.json)), and
+  the engine's packed lexer took it on to 183 MB/s
+  ([evidence](docs/evidence/corpus-check-go-lexer.json)). A
   `decl_head` rule keeps the kind and name of a half-typed declaration.
 - **`src/symbols.almd`** — functions, methods, interface method signatures,
   types, vars, consts and fields declare names; a method is owned by the type
