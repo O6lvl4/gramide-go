@@ -1,8 +1,0 @@
-{
-  "python": "3.14.4",
-  "matching_statement_trees": 400,
-  "stdlib_simple_statements": 227,
-  "rejected_statements": 124,
-  "source_sha256": "3e380127de418ba4004db3fcd19f96fa5e1d42af3a701bc92db9a5dfbe351eaf",
-  "scope": "simple statement structure; no compound statements, type aliases, contextual compiler checks or literal decoding"
-}

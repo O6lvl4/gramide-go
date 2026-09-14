@@ -1,45 +1,24 @@
-// Versioned parser output for source readers. Never export a recovered tree
-// as complete: readers must choose an explicit fallback instead.
-import self.names as nametable
-import self.package_api
-import json
-import self.tree
-import self.tags
-import self.lang
+// symbols — which of this grammar's nodes declare a name, which own methods,
+// and which reference one: the rules the readers in gramide walk with.
+// The tests are what those readers then say about a small Go file.
+import gramide.package_api
+import gramide.lex
+import gramide.parser
+import gramide.tags
+import self.lexer
+import self.grammar
 
-fn document(path: String, source: String) -> Result[String, String] = {
-  let d = lang.read_source(path, source)!
-  match d.error { some(e) => err(e), none => {
-    let language = d.language
-    ok(json.stringify(value.object([
-      ("schema_version", value.int(1)), ("complete", value.bool(true)),
-      ("lang", value.str(language)), ("total_lines", value.int(list.len(string.lines(source)))),
-      ("symbols", value.array(collect(d.parsed.root, d.parsed.toks, bytes.from_string(source), d.parsed.names, "", d.sep, d.symbols)))
-    ])))
-  } }
+fn symbol_rules() -> package_api.SymbolRules = package_api.SymbolRules {
+  declarations: [("function_declaration", "function"), ("method_declaration", "method"), ("method_signature", "method"), ("type_declaration", "type"), ("type_spec", "type"), ("var_spec", "var"), ("const_spec", "const"), ("field", "field")],
+  scopes: ["type_spec", "type_declaration"], namespaces: [], callables: ["function_declaration", "method_declaration", "method_signature"],
+  lexical_owners: false, envelopes: [], unnamed_envelopes: [],
+  arguments: "arguments", field_access: "field_access", type_mentions: ["type_name"]
 }
 
-// One module boundary per document, rather than per node in the walk.
-fn collect(n: tree.Node, toks: List[tree.Token], source: Bytes, names: nametable.Names, scope: String, sep: String, rules: package_api.SymbolRules) -> List[Value] =
-  tags.symbol_rows(n, toks, source, names, scope, sep, rules)
-
-// Explicit opt-in: only Python's recovery policy currently supplies this contract.
-fn recovered_document(path: String, source: String) -> Result[String, String] = {
-  guard lang.supports(path, "symbols-recovered") else err(path + ": language package does not provide recovered symbols")
-  let d = lang.read_source(path, source)!
-  let bytes_source = bytes.from_string(source)
-  let ranges = tags.error_ranges(d.parsed.root, d.parsed.toks, bytes_source, d.parsed.names)
-  guard option.is_none(d.error) or not list.is_empty(ranges) else err(path + ": recovered parse has no bounded error ranges")
-  let rows = collect(d.parsed.root, d.parsed.toks, bytes_source, d.parsed.names, "", d.sep, d.symbols)
-  ok(json.stringify(value.object([
-    ("schema_version", value.int(1)), ("complete", value.bool(option.is_none(d.error))),
-    ("recovery_policy", value.str("error-free-declarations-v1")),
-    ("lang", value.str(d.language)), ("total_lines", value.int(list.len(string.lines(source)))),
-    ("diagnostic", value.str(d.error ?? "")),
-    ("errors", value.array(list.map(ranges, (r) => value.object([
-      ("start", value.int(r.start)), ("end", value.int(r.end)),
-      ("start_byte", value.int(r.start_byte)), ("end_byte", value.int(r.end_byte))
-    ])))),
-    ("symbols", value.array(tags.error_free_rows(rows, ranges)))
-  ])))
+test "a Go method is named with its receiver, which is not where it is written" {
+  let src = "package p\n\ntype Shape struct{ w int }\n\nfunc (s *Shape) Area() int { return s.w }\n"
+  let source = bytes.from_string(src)
+  let toks = lex.tokenize(src, lexer.spec()) |> result.map_err((e) => e.message)!
+  let p = parser.parse(grammar.rules(), source, toks) |> result.map_err((f) => parser.format_failure(f))!
+  assert(list.contains(tags.outline(p.root, toks, source, p.names, ".", symbol_rules()), "L5-5 method Shape.Area"))
 }

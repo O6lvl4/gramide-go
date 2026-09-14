@@ -1,9 +1,0 @@
-{
-  "python": "3.14.4",
-  "matching_statement_trees": 491,
-  "stdlib_simple_statements": 227,
-  "stdlib_compound_statements": 6,
-  "rejected_statements": 146,
-  "source_sha256": "d47ac1dcd031ab89a41e3f55bed8fa8e0fa701070bd1f8b8fddaf936fffc4e8a",
-  "scope": "simple/control-flow statement structure; no functions, classes, match, type aliases, contextual compiler checks or literal decoding"
-}

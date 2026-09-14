@@ -1,0 +1,24 @@
+// gramide_go — Go for gramide: what the package hands the host.
+//
+// The lexer spec is src/lexer.almd, the grammar value src/grammar.almd,
+// src/symbols.almd says which of its nodes declare a name, and src/table.almd
+// is the grammar compiled, which is what a binary reads.
+// `definition()` is the whole contract; see package_api in gramide.
+import gramide.package_api
+import gramide.lex
+import self.lexer
+import self.symbols
+import self.table
+
+let VERSION = "0.1.0"
+
+fn prepare_lexer() -> package_api.Tokenizer = {
+  let config = lexer.spec()
+  (source, recovering) => lex.tokenize_with(source, config, recovering)
+}
+
+fn definition() -> package_api.Definition = package_api.Definition {
+  id: "go", package_name: "gramide-go", version: VERSION, extensions: [".go"],
+  capabilities: ["check", "tokens", "parse", "outline", "symbols", "tags", "map"],
+  lexer: () => prepare_lexer(), grammar: () => table.compiled(), sep: ".", symbols: symbols.symbol_rules()
+}

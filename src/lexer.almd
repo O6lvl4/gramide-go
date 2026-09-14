@@ -1,0 +1,53 @@
+// lexer — how Go is lexed: a `Spec` for the shared lexer in gramide.
+//
+// Everything about the language that a table can describe is here: keywords,
+// operators, comment markers, what a newline means, and the named families for
+// the two things a table cannot, how numbers are written and how strings end.
+import gramide.lex
+
+// ── how Go is lexed ───────────────────────────────────────────────────────
+//
+// Go's statement separator is the semicolon, and the compiler inserts one at a
+// newline that follows an identifier, a literal, one of `break continue
+// fallthrough return`, or `++ -- ) ] }`. That is the NL_SEMI policy, and
+// `ends_kw` is the keyword half of it. A block comment containing a newline
+// counts as a newline for the same rule, as in the Go spec.
+let KEYWORDS = ["break", "case", "chan", "const", "continue", "default", "defer", "else", "fallthrough",
+  "for", "func", "go", "goto", "if", "import", "interface", "map", "package", "range", "return",
+  "select", "struct", "switch", "type", "var"]
+
+let OPERATORS = ["<<=", ">>=", "&^=", "...", "&&", "||", "<-", "++", "--", "==", "!=", "<=", ">=", ":=",
+  "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "<<", ">>", "&^",
+  "+", "-", "*", "/", "%", "&", "|", "^", "<", ">", "=", "!", "(", ")", "[", "]", "{", "}", ",", ";", ".", ":", "~"]
+
+fn spec() -> lex.Spec = lex.Spec {
+  keywords: KEYWORDS,
+  operators: OPERATORS,
+  numbers: lex.N_GO,
+  strings: lex.S_GO,
+  newlines: lex.NL_SEMI,
+  ends_kw: ["break", "continue", "fallthrough", "return"],
+  line_comment: [47, 47],                 // //
+  block_open: [47, 42],                   // /*
+  block_close: [42, 47],                  // */
+  nested_block: false,
+  block_comment_newline: true,
+  upper_is_type: false,
+  backtick_ident: false,
+  neg_token: false,
+}
+
+// ── lexing ────────────────────────────────────────────────────────────────
+
+test "semicolons are inserted only after statement-ending tokens" {
+  let src = "package p\n\nimport (\n\t\"fmt\"\n)\n\nfunc f(a,\n\tb int) int {\n\treturn a +\n\t\tb\n}\n"
+  let toks = lex.tokenize(src, spec())!
+  assert_eq(lex.texts(bytes.from_string(src), toks), ["package", "p", "", "import", "(", "\"fmt\"", "", ")", "", "func", "f", "(", "a", ",", "b", "int", ")", "int", "{", "return", "a", "+", "b", "", "}", "", ""])
+}
+
+test "numbers, runes, raw strings, operators" {
+  let src = "x := 0x1p-2 + 1e3 + 2i + 'a' + `raw\nstring` &^ y"
+  let toks = lex.tokenize(src, spec())!
+  assert_eq(lex.kinds(list.take(toks, 12)), ["identifier", "punct", "float", "punct", "float", "punct", "imaginary", "punct", "rune", "punct", "string", "punct"])
+  assert_eq(list.get(lex.texts(bytes.from_string(src), toks), 11), some("&^"))
+}

@@ -1,0 +1,51 @@
+// gramide_go — this package's own binary: the gramide command line over
+// Go alone, plus `gen-table`, which writes src/table.almd. The shipped
+// `gramide` composes every language the same way; this one exists so the
+// package can be tested, benchmarked and regenerated on its own.
+import gramide.cli
+import gramide.package_api
+import gramide.tables
+import self as pkg
+import self.grammar
+import env
+
+fn packages() -> List[package_api.Definition] = [pkg.definition()]
+
+// Eight byte-balanced slices of the file list, checked in parallel and
+// answered in list order. This block stands in the binary rather than in the
+// core because a `fan` arm cannot carry a language package — its lexer is a
+// closure — so each arm builds the packages by name.
+effect fn parallel(cmd: String, paths: List[String]) -> List[cli.Chunk] = {
+  let cuts = cli.cut_points(paths, 8)!
+  let c0 = cli.cut_at(cuts, 0)
+  let c1 = cli.cut_at(cuts, 1)
+  let c2 = cli.cut_at(cuts, 2)
+  let c3 = cli.cut_at(cuts, 3)
+  let c4 = cli.cut_at(cuts, 4)
+  let c5 = cli.cut_at(cuts, 5)
+  let c6 = cli.cut_at(cuts, 6)
+  let c7 = cli.cut_at(cuts, 7)
+  let c8 = list.len(paths)
+  let r = fan {
+    cli.check_chunk(packages(), cmd, paths, c0, c1),
+    cli.check_chunk(packages(), cmd, paths, c1, c2),
+    cli.check_chunk(packages(), cmd, paths, c2, c3),
+    cli.check_chunk(packages(), cmd, paths, c3, c4),
+    cli.check_chunk(packages(), cmd, paths, c4, c5),
+    cli.check_chunk(packages(), cmd, paths, c5, c6),
+    cli.check_chunk(packages(), cmd, paths, c6, c7),
+    cli.check_chunk(packages(), cmd, paths, c7, c8)
+  }
+  [r.0, r.1, r.2, r.3, r.4, r.5, r.6, r.7]
+}
+
+effect fn main() -> Unit = {
+  let argv = env.args()
+  // the one command the shipped binary does not have: the grammar, compiled and
+  // written down, which is what src/table.almd is
+  if list.first(argv) == some("gen-table") then println(tables.render("go", grammar.rules()))
+  else match cli.batch_of(argv) {
+    some((cmd, paths)) => cli.report(parallel(cmd, paths)!),
+    none => cli.run(cli.Program { name: "gramide_go", version: pkg.VERSION, packages: packages() }, argv),
+  }
+}

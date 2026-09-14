@@ -2,7 +2,7 @@ from pathlib import Path
 import json,subprocess,sys,tempfile,hashlib
 checkout=Path(sys.argv[1]).resolve()
 root=checkout/'src/go'
-binary=Path(__file__).resolve().parents[1]/'gramide'
+binary=Path(__file__).resolve().parents[1]/'gramide_go'
 scratch=tempfile.TemporaryDirectory()
 oracle=Path(scratch.name)/'oracle'
 subprocess.run(['go','build','-o',str(oracle),str(binary.parent/'ci/reference_ranges.go')],check=True)

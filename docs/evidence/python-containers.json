@@ -1,7 +1,0 @@
-{
-  "python": "3.14.4",
-  "matching_expression_trees": 718,
-  "rejected_expressions": 62,
-  "expressions_sha256": "25e88dcb1260972d5ee15fafc7716767a2cff0647de6aab4cc075120889bdea3",
-  "scope": "normalized operator trees, conditional order, comparisons, call/attribute/subscript structure, displays, unpacking and slices; not a complete Python grammar"
-}
