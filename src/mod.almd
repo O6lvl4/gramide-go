@@ -10,11 +10,12 @@ import self.lexer
 import self.symbols
 import self.table
 
-let VERSION = "0.1.1"
+let VERSION = "0.1.2"
 
+// The spec's keywords and operators are packed once here, not once per file.
 fn prepare_lexer() -> package_api.Tokenizer = {
-  let config = lexer.spec()
-  (source, recovering) => lex.tokenize_with(source, config, recovering)
+  let prepared = lex.prepare(lexer.spec())
+  (source, recovering) => lex.tokenize_prepared(source, prepared, recovering)
 }
 
 fn definition() -> package_api.Definition = package_api.Definition {
