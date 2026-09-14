@@ -10,7 +10,7 @@ import self.lexer
 import self.symbols
 import self.table
 
-let VERSION = "0.1.0"
+let VERSION = "0.1.1"
 
 fn prepare_lexer() -> package_api.Tokenizer = {
   let config = lexer.spec()

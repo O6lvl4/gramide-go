@@ -17,9 +17,8 @@
 
 import gramide.names as nametable
 import gramide.lex
-import gramide.tree
 import gramide.parser
-import gramide.parser.{ tok, lit, keep, r, seq, alt, rep, rep1, opt, wrap, field, ahead, leftf, lits, keeps, grammar, recover, recover_all, recover_all_keeping }
+import gramide.parser.{ tok, lit, keep, r, seq, alt, rep, rep1, opt, wrap, field, ahead, prec, lits, keeps, grammar, recover, recover_all, recover_all_keeping }
 import self.lexer
 
 let ident = tok("identifier")
@@ -54,11 +53,13 @@ fn expr_rules(sfx: String, composite: Bool) -> List[(String, parser.Rule)] = {
     seq([r("type_operand"), opt(r("literal_body"))]),
     ident])
   [
-    ("expr" + sfx, leftf("binary", r("and" + sfx), keep("||"))),
-    ("and" + sfx, leftf("binary", r("cmp" + sfx), keep("&&"))),
-    ("cmp" + sfx, leftf("binary", r("sum" + sfx), keeps(["==", "!=", "<=", ">=", "<", ">"]))),
-    ("sum" + sfx, leftf("binary", r("product" + sfx), keeps(["+", "-", "|", "^"]))),
-    ("product" + sfx, leftf("binary", r("unary" + sfx), keeps(["*", "/", "%", "<<", ">>", "&^", "&"]))),
+    // The five binary levels are one ladder, lowest first. Written as nested
+    // folds, reaching an operand cost a rule visit per level before the
+    // operand was even tried — on a file of 800 one-line functions, most of
+    // what the parser did.
+    ("expr" + sfx, prec("binary", r("unary" + sfx), [
+      keep("||"), keep("&&"), keeps(["==", "!=", "<=", ">=", "<", ">"]), keeps(["+", "-", "|", "^"]), keeps(["*", "/", "%", "<<", ">>", "&^", "&"])
+    ])),
     ("unary" + sfx, alt([
        wrap("unary", seq([field("operator", keeps(["+", "-", "!", "^", "*", "&", "<-", "~"])), r("unary" + sfx)])),
        r("postfix" + sfx)])),

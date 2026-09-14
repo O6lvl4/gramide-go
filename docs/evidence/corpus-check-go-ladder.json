@@ -1,0 +1,25 @@
+{
+  "platform": "macOS-15.4.1-arm64-arm-64bit",
+  "binary_sha256": "90b7a60ed01af9aa0b5a8022c3d0f514176d8b7d229609687f46043e79f94df7",
+  "mode": "`check` over a whole corpus, 2000 files to a process, median of 5 passes; startup is paid once a chunk, not once a file",
+  "root": "/Users/o6lvl4/.goenv/versions/1.26.1/src",
+  "ext": ".go",
+  "excluded": [
+    ".claude",
+    ".git",
+    "target",
+    "worktrees"
+  ],
+  "files": 7702,
+  "bytes": 90200514,
+  "processes": 4,
+  "seconds": 0.5841355830198154,
+  "megabytes_per_second": 154.41708504331976,
+  "rejected_lines": 32,
+  "largest": {
+    "path": "cmd/compile/internal/ssa/opGen.go",
+    "lines": 96689,
+    "bytes": 2973586,
+    "milliseconds": 50.303959054872394
+  }
+}
