@@ -50,15 +50,14 @@ alone ([evidence](docs/evidence/corpus-check-go.json)). Against `gofmt -e`,
 which is the fair comparison — a hand-written recursive descent parser for
 the same language — 1,500 files and 25.5 MB take 1.30 s to gramide's 2.74 s
 on one core, and 0.38 s to 0.70 s as each ships. Against tree-sitter-go, a
-structured read of 800 generated functions takes **5.4 ms to its 5.9 ms**,
-400 take 4.0 to 3.8, and 100 take 3.2 to 2.8 — the small files are the
-process floor, 0.2 ms of Rust runtime that a C binary does not pay
-([evidence](docs/evidence/symbol-walk-ladder.json), `bench/symbols.py`).
+structured read of 800 generated functions takes **0.78x its time**, 400
+take 0.90x and 100 take 0.86x — fresh processes, startup included, on the
+same machine in the same minute ([evidence](docs/evidence/symbol-walk-lexer.json),
+`bench/symbols.py`).
 When this package was extracted the same read took 8.2, 18.7 and 33.7 ms
 ([then](docs/evidence/symbol-walk-benchmark.json)); the difference is the
 engine's row rendering, its packed lexer, and this grammar's expression
-ladder, below. With the packed lexer the 400-function read is three
-quarters of tree-sitter's time ([evidence](docs/evidence/symbol-walk-lexer.json)).
+ladder, below.
 
 ## How it is written
 
@@ -76,7 +75,7 @@ quarters of tree-sitter's time ([evidence](docs/evidence/symbol-walk-lexer.json)
   nested folds, reaching an operand cost a rule visit per level, and folding
   them took the whole of `GOROOT/src` from 132 to 154 MB/s with the same 32
   files rejected ([evidence](docs/evidence/corpus-check-go-ladder.json)), and
-  the engine's packed lexer took it on to 183 MB/s
+  the engine's packed lexer took it on to 211 MB/s
   ([evidence](docs/evidence/corpus-check-go-lexer.json)). A
   `decl_head` rule keeps the kind and name of a half-typed declaration.
 - **`src/symbols.almd`** — functions, methods, interface method signatures,

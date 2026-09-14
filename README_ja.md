@@ -41,13 +41,12 @@ Go 1.27 の `GOROOT/src` 配下の全 `.go` ファイル — 標準ライブラ�
 単体で 64 ミリ秒（[証拠](docs/evidence/corpus-check-go.json)）。公平な比較対象である `gofmt -e`
 （同じ言語の手書き再帰下降パーサ）に対しては、1,500 ファイル・25.5 MB で 1 コアなら 1.30 秒
 対 gramide 2.74 秒、それぞれの出荷状態なら 0.38 秒対 0.70 秒。tree-sitter-go に対しては、
-生成した 800 関数の構造化読み取りが **5.4 ミリ秒対 5.9 ミリ秒**、400 関数で 4.0 対 3.8、
-100 関数で 3.2 対 2.8 — 小さいファイルの差はプロセスの床、C のバイナリが払わない Rust ランタイムの
-0.2 ミリ秒です（[証拠](docs/evidence/symbol-walk-ladder.json)、`bench/symbols.py`）。
+生成した 800 関数の構造化読み取りが **tree-sitter の 0.78 倍の時間**、400 関数で 0.90 倍、
+100 関数で 0.86 倍 — 新規プロセス、起動込み、同じ機械の同じ 1 分間の計測です
+（[証拠](docs/evidence/symbol-walk-lexer.json)、`bench/symbols.py`）。
 このパッケージを切り出した時点では同じ読み取りが 8.2・18.7・33.7 ミリ秒でした
 （[当時](docs/evidence/symbol-walk-benchmark.json)）。差はエンジンの行生成と pack した字句解析器、
-そして下記のこの文法の式の梯子です。pack した字句解析器では 400 関数の読み取りが tree-sitter の
-4 分の 3 の時間です（[証拠](docs/evidence/symbol-walk-lexer.json)）。
+そして下記のこの文法の式の梯子です。
 
 ## 書き方
 
@@ -61,7 +60,7 @@ Go 1.27 の `GOROOT/src` 配下の全 `.go` ファイル — 標準ライブラ�
   生成しています。二項演算子の 5 段は 1 つの `prec` 梯子です。入れ子の畳み込みで書くと被演算子に
   届くまで段ごとに規則を 1 回訪ねていて、畳んだことで `GOROOT/src` 全体が 132 から 154 MB/s に、
   拒否する 32 ファイルはそのままでした（[証拠](docs/evidence/corpus-check-go-ladder.json)）。エンジンの
-  pack した字句解析器でさらに 183 MB/s になっています（[証拠](docs/evidence/corpus-check-go-lexer.json)）。
+  pack した字句解析器でさらに 211 MB/s になっています（[証拠](docs/evidence/corpus-check-go-lexer.json)）。
   `decl_head` 規則は書きかけの宣言の種類と名前を残します。
 - **`src/symbols.almd`** — 関数・メソッド・インタフェースのメソッドシグネチャ・型・var・const・
   field が名前を宣言し、メソッドの所有者は書かれた場所ではなく `receiver` フィールドの型です。

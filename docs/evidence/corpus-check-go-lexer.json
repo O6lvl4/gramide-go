@@ -13,13 +13,13 @@
   "files": 7702,
   "bytes": 90200514,
   "processes": 4,
-  "seconds": 0.4914363749558106,
-  "megabytes_per_second": 183.5446430030962,
+  "seconds": 0.42690716695506126,
+  "megabytes_per_second": 211.2883572401937,
   "rejected_lines": 32,
   "largest": {
     "path": "cmd/compile/internal/ssa/opGen.go",
     "lines": 96689,
     "bytes": 2973586,
-    "milliseconds": 33.177917008288205
+    "milliseconds": 32.347834086976945
   }
 }
