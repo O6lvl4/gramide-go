@@ -3,7 +3,7 @@
  "edits": 1000,
  "seed": 7,
  "verify_every": 50,
- "gramide_sha256": "a283599b1d85983826dd5f3febb7c5158ac8a09308aec57fc4495b6b938d2cee",
+ "gramide_sha256": "82951bc53504c1d529d5e7e1b9e8db7e52445ef2642b3f29c10adaec6d732a09",
  "tree_sitter_harness_sha256": "85c2ff1d5f5a3717b4da4428835989907f4d9a9b5c394cfafe96b558faf4d10b",
  "files": [
   {
@@ -12,9 +12,9 @@
    "gramide": {
     "tool": "gramide",
     "edits": 1000,
-    "median_us": 30.3,
-    "p90_us": 40.9,
-    "max_us": 76.0,
+    "median_us": 33.0,
+    "p90_us": 44.1,
+    "max_us": 76.4,
     "fallbacks": 0,
     "mismatches": 0,
     "initial_mismatch": false,
@@ -27,14 +27,19 @@
      "error_near": 0
     },
     "whole_parse_samples": 20,
-    "whole_parse_median_us": 1437.5
+    "whole_parse_median_us": 1485.0,
+    "items": 885,
+    "items_renamed_median": 0,
+    "items_renamed_p90": 0,
+    "items_renamed_max": 0,
+    "edits_renaming_none": 1000
    },
    "tree_sitter": {
     "tool": "tree-sitter",
     "edits": 1000,
-    "median_us": 150.0,
-    "p90_us": 173.0,
-    "max_us": 203.0,
+    "median_us": 148.0,
+    "p90_us": 174.0,
+    "max_us": 238.0,
     "errors_at_end": 0,
     "first_error_edit": -1
    }

@@ -1,6 +1,6 @@
 {
   "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
-  "binary_sha256": "a283599b1d85983826dd5f3febb7c5158ac8a09308aec57fc4495b6b938d2cee",
+  "binary_sha256": "82951bc53504c1d529d5e7e1b9e8db7e52445ef2642b3f29c10adaec6d732a09",
   "root": "/Users/o6lvl4/Library/Application Support/dev.O6lvl4.gv/store/b543bf435ed266d6/src",
   "ext": [
     ".go"
@@ -14,13 +14,13 @@
   "checked": 5911,
   "edits": 59110,
   "mismatches": 0,
-  "fallbacks": 1177,
+  "fallbacks": 1,
   "fallback_reasons": {
     "no_lex": 0,
     "no_head": 0,
-    "no_parse": 367,
+    "no_parse": 1,
     "no_site": 0,
-    "root_own": 810,
+    "root_own": 0,
     "error_near": 0
   },
   "skipped_no_long_word": [

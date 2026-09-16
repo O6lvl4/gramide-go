@@ -41,4 +41,4 @@ args.out.write_text(json.dumps(report, indent=1) + "\n")
 for r in rows:
     if "error" in r: print(r["path"], "ERROR", r["error"][:200]); continue
     g, t = r["gramide"], r["tree_sitter"]
-    print(f'{Path(r["path"]).name}: gramide median {g["median_us"]} us (p90 {g["p90_us"]}, fallbacks {g["fallbacks"]}, mismatches {g["mismatches"]}, whole {g["whole_parse_median_us"]} us) | tree-sitter median {t["median_us"]} us (p90 {t["p90_us"]})')
+    print(f'{Path(r["path"]).name}: gramide median {g["median_us"]} us (p90 {g["p90_us"]}, fallbacks {g["fallbacks"]}, mismatches {g["mismatches"]}, whole {g["whole_parse_median_us"]} us; items {g.get("items")}, renamed per edit median {g.get("items_renamed_median")} p90 {g.get("items_renamed_p90")} max {g.get("items_renamed_max")}, edits renaming none {g.get("edits_renaming_none")}) | tree-sitter median {t["median_us"]} us (p90 {t["p90_us"]})')

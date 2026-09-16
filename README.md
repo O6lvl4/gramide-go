@@ -74,16 +74,14 @@ whole parse ([evidence](docs/evidence/incremental-go-net-http-server.json),
 
 | `net/http/server.go` | gramide | tree-sitter |
 |---|---:|---:|
-| median | 30 µs | 150 µs |
-| 90th percentile | 41 µs | 173 µs |
-| a whole parse, for scale | 1.4 ms | |
+| median | 33 µs | 148 µs |
+| 90th percentile | 44 µs | 174 µs |
+| a whole parse, for scale | 1.5 ms | |
 
 Over `GOROOT/src`, ten random edits in each of the 5,911 files that hold a
 long enough word outside `testdata` (59,110 edits, every one checked token
 for token and node for node against a whole parse of the same text) gave no
-difference; 1,177 edits were read as a whole file, 810 of them in files
-whose top level holds no declaration and 367 where the re-read did not
-end where it should ([evidence](docs/evidence/incremental-corpus-goroot-src.json)).
+difference; one edit was read as a whole file ([evidence](docs/evidence/incremental-corpus-goroot-src.json)).
 `ci/incremental_check.py` runs this; `reparse --edit START:OLD_END:NEW_END --new FILE`
 is the one-edit command.
 
