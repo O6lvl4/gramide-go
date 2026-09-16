@@ -1,6 +1,6 @@
 {
   "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
-  "binary_sha256": "82951bc53504c1d529d5e7e1b9e8db7e52445ef2642b3f29c10adaec6d732a09",
+  "binary_sha256": "d75882e77b9e3fac198ec8165b59e5b8a3e4d0628c10c4cb2805bf6c0bdecb82",
   "root": "/Users/o6lvl4/Library/Application Support/dev.O6lvl4.gv/store/b543bf435ed266d6/src",
   "ext": [
     ".go"
