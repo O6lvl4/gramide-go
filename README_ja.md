@@ -48,6 +48,27 @@ Go 1.27 の `GOROOT/src` 配下の全 `.go` ファイル — 標準ライブラ�
 （[当時](docs/evidence/symbol-walk-benchmark.json)）。差はエンジンの行生成と pack した字句解析器、
 そして下記のこの文法の式の梯子です。
 
+キー入力 1 回は item 1 つを読み直すだけです。エンジンはパース済みのファイルを recover item
+（ここでは先頭レベルの各宣言と、ブロック内の各文）の入れ子として持ち、編集が触れた最小の item を
+読み直します（[仕組み](https://github.com/O6lvl4/gramide/blob/main/docs/incremental.md)）。
+`net/http/server.go`（140 KB）に同じ 1,000 編集（13 文字以上の単語の 6 文字目に 1 文字打つ・消す）を、
+gramide の `reparse-bench` と、tree-sitter-go `2346a3a` の `ts_tree_edit`＋再パース
+（[gramide-javascript](https://github.com/O6lvl4/gramide-javascript/blob/main/bench/tree_sitter_ranges.c) の
+C ハーネスを `-DLANG=tree_sitter_go` で組んだもの）にプロセス内で与え、50 回に 1 回は丸ごとのパースと
+照合しました（[証拠](docs/evidence/incremental-go-net-http-server.json)、`bench/incremental.py`）。
+
+| `net/http/server.go` | gramide | tree-sitter |
+|---|---:|---:|
+| 中央値 | 46 µs | 154 µs |
+| 90 パーセンタイル | 92 µs | 177 µs |
+| 丸ごとのパース（目安） | 1.4 ms | |
+
+`GOROOT/src` の `testdata` 以外で十分長い単語を持つ 5,911 ファイルに各 10 回のランダム編集
+（59,110 回、毎回トークンとノードを丸ごとのパースと照合）で差はゼロ。1,180 回はファイル全体を
+読みました（先頭レベルに宣言のないファイルで 810 回、読み直しが所定の位置で終わらなかったのが 370 回。
+[証拠](docs/evidence/incremental-corpus-goroot-src.json)）。`ci/incremental_check.py` がこれを回し、
+1 回の編集は `reparse --edit START:OLD_END:NEW_END --new FILE` です。
+
 ## 書き方
 
 - **`src/lexer.almd`** — 32 行の `Spec`。キーワード、演算子、`//` と `/* */`、16 進浮動小数と

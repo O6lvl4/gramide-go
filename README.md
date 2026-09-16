@@ -59,6 +59,34 @@ When this package was extracted the same read took 8.2, 18.7 and 33.7 ms
 engine's row rendering, its packed lexer, and this grammar's expression
 ladder, below.
 
+One keystroke re-reads one item: the engine keeps a parsed file as its
+recover items (here, every top-level declaration and every statement inside
+a block) and re-reads the smallest one an edit touched
+([how](https://github.com/O6lvl4/gramide/blob/main/docs/incremental.md)).
+The same 1,000 edits on `net/http/server.go` (140 KB), each a letter typed or
+deleted six letters into a word of thirteen or more, in-process, for
+gramide's `reparse-bench` and for tree-sitter-go at `2346a3a` through
+`ts_tree_edit` + reparse in the C harness of
+[gramide-javascript](https://github.com/O6lvl4/gramide-javascript/blob/main/bench/tree_sitter_ranges.c)
+built with `-DLANG=tree_sitter_go`; every fiftieth result checked against a
+whole parse ([evidence](docs/evidence/incremental-go-net-http-server.json),
+`bench/incremental.py`):
+
+| `net/http/server.go` | gramide | tree-sitter |
+|---|---:|---:|
+| median | 46 µs | 154 µs |
+| 90th percentile | 92 µs | 177 µs |
+| a whole parse, for scale | 1.4 ms | |
+
+Over `GOROOT/src`, ten random edits in each of the 5,911 files that hold a
+long enough word outside `testdata` (59,110 edits, every one checked token
+for token and node for node against a whole parse of the same text) gave no
+difference; 1,180 edits were read as a whole file, 810 of them in files
+whose top level holds no declaration and 370 where the re-read did not
+end where it should ([evidence](docs/evidence/incremental-corpus-goroot-src.json)).
+`ci/incremental_check.py` runs this; `reparse --edit START:OLD_END:NEW_END --new FILE`
+is the one-edit command.
+
 ## How it is written
 
 - **`src/lexer.almd`** — 32 lines of `Spec`: keywords, operators, `//` and

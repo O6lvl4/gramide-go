@@ -1,0 +1,43 @@
+{
+ "platform": "macOS-26.3-arm64-arm-64bit-Mach-O",
+ "edits": 1000,
+ "seed": 7,
+ "verify_every": 50,
+ "gramide_sha256": "10653c382eb4b4aec934538d47420f3a75be0dbb56c974330a01c056e508bf21",
+ "tree_sitter_harness_sha256": "85c2ff1d5f5a3717b4da4428835989907f4d9a9b5c394cfafe96b558faf4d10b",
+ "files": [
+  {
+   "path": "/Users/o6lvl4/Library/Application Support/dev.O6lvl4.gv/store/b543bf435ed266d6/src/net/http/server.go",
+   "bytes": 140287,
+   "gramide": {
+    "tool": "gramide",
+    "edits": 1000,
+    "median_us": 45.6,
+    "p90_us": 92.1,
+    "max_us": 543.2,
+    "fallbacks": 0,
+    "mismatches": 0,
+    "initial_mismatch": false,
+    "fallback_reasons": {
+     "no_lex": 0,
+     "no_head": 0,
+     "no_parse": 0,
+     "no_site": 0,
+     "root_own": 0,
+     "error_near": 0
+    },
+    "whole_parse_samples": 20,
+    "whole_parse_median_us": 1406.3
+   },
+   "tree_sitter": {
+    "tool": "tree-sitter",
+    "edits": 1000,
+    "median_us": 154.0,
+    "p90_us": 177.0,
+    "max_us": 212.0,
+    "errors_at_end": 0,
+    "first_error_edit": -1
+   }
+  }
+ ]
+}
