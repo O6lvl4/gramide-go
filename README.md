@@ -74,8 +74,8 @@ whole parse ([evidence](docs/evidence/incremental-go-net-http-server.json),
 
 | `net/http/server.go` | gramide | tree-sitter |
 |---|---:|---:|
-| median | 12 µs | 150 µs |
-| 90th percentile | 18 µs | 174 µs |
+| median | 13 µs | 156 µs |
+| 90th percentile | 22 µs | 181 µs |
 | a whole parse, for scale | 1.5 ms | |
 
 Over `GOROOT/src`, ten random edits in each of the 5,911 files that hold a
@@ -98,12 +98,12 @@ appears ([evidence](docs/evidence/recovery-goroot-src.json), [how it recovers](h
 
 | Go `src/`: 8,010 files, 30,927 breaks | gramide | tree-sitter |
 |---|---:|---:|
-| declarations kept, all breaks | 99.5% | 91.1% |
-| clean breaks (nothing lost beyond the break, nothing invented) | 99.0% | 82.9% |
+| declarations kept, all breaks | 99.7% | 91.1% |
+| clean breaks (nothing lost beyond the break, nothing invented) | 99.2% | 82.9% |
 | clean breaks, `insert {` | 98.8% | 91.6% |
-| clean breaks, `delete }` | 99.3% | 48.2% |
-| clean breaks, `delete )` | 99.5% | 92.3% |
-| clean breaks, `insert (` | 98.7% | 97.0% |
+| clean breaks, `delete }` | 99.4% | 48.2% |
+| clean breaks, `delete )` | 99.7% | 92.3% |
+| clean breaks, `insert (` | 98.8% | 97.0% |
 
 gramide is ahead on every kind of break; a `}` deleted is the large one. The
 next `func` is where gramide resumes, so one function is lost, where

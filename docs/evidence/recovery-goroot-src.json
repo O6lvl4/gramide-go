@@ -19,58 +19,58 @@
   "total": {
    "breaks": 30927,
    "baseline": 465450,
-   "kept": 463297,
-   "lost_touching": 860,
-   "lost_collateral": 1293,
+   "kept": 464016,
+   "lost_touching": 458,
+   "lost_collateral": 976,
    "spurious": 1,
-   "clean_breaks": 30631,
+   "clean_breaks": 30669,
    "no_error_reported": 30675,
-   "error_nodes": 50273
+   "error_nodes": 35410
   },
   "by_break": [
    {
     "breaks": 8010,
     "baseline": 116667,
-    "kept": 116034,
-    "lost_touching": 227,
-    "lost_collateral": 406,
+    "kept": 116043,
+    "lost_touching": 225,
+    "lost_collateral": 399,
     "spurious": 0,
-    "clean_breaks": 7911,
+    "clean_breaks": 7914,
     "no_error_reported": 7891,
-    "error_nodes": 6395
+    "error_nodes": 6342
    },
    {
     "breaks": 7330,
     "baseline": 115627,
-    "kept": 115344,
-    "lost_touching": 37,
-    "lost_collateral": 246,
+    "kept": 115483,
+    "lost_touching": 17,
+    "lost_collateral": 127,
     "spurious": 1,
-    "clean_breaks": 7278,
+    "clean_breaks": 7286,
     "no_error_reported": 7330,
-    "error_nodes": 9875
+    "error_nodes": 9407
    },
    {
     "breaks": 7577,
     "baseline": 116489,
-    "kept": 115829,
-    "lost_touching": 362,
-    "lost_collateral": 298,
+    "kept": 116291,
+    "lost_touching": 27,
+    "lost_collateral": 171,
     "spurious": 0,
-    "clean_breaks": 7538,
+    "clean_breaks": 7555,
     "no_error_reported": 7577,
-    "error_nodes": 15434
+    "error_nodes": 5222
    },
    {
     "breaks": 8010,
     "baseline": 116667,
-    "kept": 116090,
-    "lost_touching": 234,
-    "lost_collateral": 343,
+    "kept": 116199,
+    "lost_touching": 189,
+    "lost_collateral": 279,
     "spurious": 0,
-    "clean_breaks": 7904,
+    "clean_breaks": 7914,
     "no_error_reported": 7877,
-    "error_nodes": 18569
+    "error_nodes": 14439
    }
   ],
   "worst": [
@@ -91,52 +91,12 @@
     18
    ],
    [
-    39,
-    0,
-    "internal/types/testdata/check/cycles0.go",
-    "delete }",
-    1132,
-    59
-   ],
-   [
-    32,
-    0,
-    "go/internal/gcimporter/testdata/exports.go",
-    "delete }",
-    1106,
-    58
-   ],
-   [
-    32,
-    0,
-    "go/internal/gcimporter/testdata/exports.go",
-    "delete )",
-    1251,
-    68
-   ],
-   [
     32,
     0,
     "cmd/compile/internal/importer/testdata/exports.go",
     "insert {",
     1186,
     65
-   ],
-   [
-    32,
-    0,
-    "cmd/compile/internal/importer/testdata/exports.go",
-    "delete }",
-    1335,
-    71
-   ],
-   [
-    32,
-    0,
-    "cmd/compile/internal/importer/testdata/exports.go",
-    "delete )",
-    1183,
-    64
    ],
    [
     22,
@@ -153,6 +113,46 @@
     "insert {",
     4639,
     219
+   ],
+   [
+    18,
+    0,
+    "runtime/importx_test.go",
+    "delete }",
+    669,
+    30
+   ],
+   [
+    17,
+    0,
+    "runtime/importx_test.go",
+    "insert {",
+    523,
+    22
+   ],
+   [
+    15,
+    0,
+    "go/internal/gcimporter/testdata/exports.go",
+    "delete }",
+    1106,
+    58
+   ],
+   [
+    13,
+    0,
+    "internal/lazyregexp/lazyre.go",
+    "insert {",
+    305,
+    7
+   ],
+   [
+    12,
+    0,
+    "cmd/compile/internal/ssa/likelyadjust.go",
+    "insert {",
+    168,
+    5
    ]
   ]
  },
@@ -297,8 +297,8 @@
    ]
   ]
  },
- "both_lost_collateral": 52,
- "only_gramide_lost_collateral": 243,
- "only_tree_sitter_lost_collateral": 5234,
- "seconds": 240.0
+ "both_lost_collateral": 48,
+ "only_gramide_lost_collateral": 209,
+ "only_tree_sitter_lost_collateral": 5238,
+ "seconds": 307.3
 }
