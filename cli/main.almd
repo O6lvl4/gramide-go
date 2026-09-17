@@ -45,7 +45,7 @@ effect fn main() -> Unit = {
   // written down, which is what src/table.almd is
   if list.first(argv) == some("gen-table") then println(tables.render("go", grammar.rules()))
   else match cli.batch_of(argv) {
-    some((cmd, paths)) => cli.report(parallel(cmd, paths)!),
-    none => cli.run(cli.Program { name: "gramide_go", version: pkg.VERSION, packages: packages() }, argv),
+    some((cmd, paths)) => cli.report(parallel(cmd, paths)!)!,
+    none => cli.run(cli.Program { name: "gramide_go", version: pkg.VERSION, packages: packages() }, argv)!,
   }
 }

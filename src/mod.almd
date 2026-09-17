@@ -10,7 +10,7 @@ import self.lexer
 import self.symbols
 import self.table
 
-let VERSION = "0.1.9"
+let VERSION = "0.1.10"
 
 // The spec's keywords and operators are packed once here, not once per file.
 fn prepare_lexer() -> package_api.Tokenizer = {
