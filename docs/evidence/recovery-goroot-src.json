@@ -1,0 +1,304 @@
+{
+ "root": "/Users/o6lvl4/Library/Application Support/dev.O6lvl4.gv/store/b543bf435ed266d6/src",
+ "kinds": [
+  "function",
+  "method",
+  "type"
+ ],
+ "files": 8010,
+ "skipped_not_clean": 66,
+ "breaks_per_file": 4,
+ "seed": 7,
+ "break_kinds": [
+  "insert {",
+  "delete }",
+  "delete )",
+  "insert ("
+ ],
+ "gramide": {
+  "total": {
+   "breaks": 30927,
+   "baseline": 465450,
+   "kept": 463297,
+   "lost_touching": 860,
+   "lost_collateral": 1293,
+   "spurious": 1,
+   "clean_breaks": 30631,
+   "no_error_reported": 30675,
+   "error_nodes": 50273
+  },
+  "by_break": [
+   {
+    "breaks": 8010,
+    "baseline": 116667,
+    "kept": 116034,
+    "lost_touching": 227,
+    "lost_collateral": 406,
+    "spurious": 0,
+    "clean_breaks": 7911,
+    "no_error_reported": 7891,
+    "error_nodes": 6395
+   },
+   {
+    "breaks": 7330,
+    "baseline": 115627,
+    "kept": 115344,
+    "lost_touching": 37,
+    "lost_collateral": 246,
+    "spurious": 1,
+    "clean_breaks": 7278,
+    "no_error_reported": 7330,
+    "error_nodes": 9875
+   },
+   {
+    "breaks": 7577,
+    "baseline": 116489,
+    "kept": 115829,
+    "lost_touching": 362,
+    "lost_collateral": 298,
+    "spurious": 0,
+    "clean_breaks": 7538,
+    "no_error_reported": 7577,
+    "error_nodes": 15434
+   },
+   {
+    "breaks": 8010,
+    "baseline": 116667,
+    "kept": 116090,
+    "lost_touching": 234,
+    "lost_collateral": 343,
+    "spurious": 0,
+    "clean_breaks": 7904,
+    "no_error_reported": 7877,
+    "error_nodes": 18569
+   }
+  ],
+  "worst": [
+   [
+    100,
+    0,
+    "internal/types/testdata/check/unions.go",
+    "delete )",
+    977,
+    23
+   ],
+   [
+    90,
+    0,
+    "internal/types/testdata/check/unions.go",
+    "insert {",
+    628,
+    18
+   ],
+   [
+    39,
+    0,
+    "internal/types/testdata/check/cycles0.go",
+    "delete }",
+    1132,
+    59
+   ],
+   [
+    32,
+    0,
+    "go/internal/gcimporter/testdata/exports.go",
+    "delete }",
+    1106,
+    58
+   ],
+   [
+    32,
+    0,
+    "go/internal/gcimporter/testdata/exports.go",
+    "delete )",
+    1251,
+    68
+   ],
+   [
+    32,
+    0,
+    "cmd/compile/internal/importer/testdata/exports.go",
+    "insert {",
+    1186,
+    65
+   ],
+   [
+    32,
+    0,
+    "cmd/compile/internal/importer/testdata/exports.go",
+    "delete }",
+    1335,
+    71
+   ],
+   [
+    32,
+    0,
+    "cmd/compile/internal/importer/testdata/exports.go",
+    "delete )",
+    1183,
+    64
+   ],
+   [
+    22,
+    0,
+    "unique/handle_test.go",
+    "insert (",
+    168,
+    5
+   ],
+   [
+    19,
+    0,
+    "internal/types/testdata/spec/assignability.go",
+    "insert {",
+    4639,
+    219
+   ]
+  ]
+ },
+ "tree_sitter": {
+  "total": {
+   "breaks": 30927,
+   "baseline": 457213,
+   "kept": 416577,
+   "lost_touching": 984,
+   "lost_collateral": 39652,
+   "spurious": 29,
+   "clean_breaks": 25638,
+   "no_error_reported": 9390,
+   "error_nodes": 158567
+  },
+  "by_break": [
+   {
+    "breaks": 8010,
+    "baseline": 114596,
+    "kept": 108973,
+    "lost_touching": 185,
+    "lost_collateral": 5438,
+    "spurious": 0,
+    "clean_breaks": 7340,
+    "no_error_reported": 4088,
+    "error_nodes": 15057
+   },
+   {
+    "breaks": 7330,
+    "baseline": 113581,
+    "kept": 84430,
+    "lost_touching": 356,
+    "lost_collateral": 28795,
+    "spurious": 0,
+    "clean_breaks": 3534,
+    "no_error_reported": 332,
+    "error_nodes": 72586
+   },
+   {
+    "breaks": 7577,
+    "baseline": 114440,
+    "kept": 111269,
+    "lost_touching": 131,
+    "lost_collateral": 3040,
+    "spurious": 14,
+    "clean_breaks": 6991,
+    "no_error_reported": 834,
+    "error_nodes": 50012
+   },
+   {
+    "breaks": 8010,
+    "baseline": 114596,
+    "kept": 111905,
+    "lost_touching": 312,
+    "lost_collateral": 2379,
+    "spurious": 15,
+    "clean_breaks": 7773,
+    "no_error_reported": 4136,
+    "error_nodes": 20912
+   }
+  ],
+  "worst": [
+   [
+    1452,
+    0,
+    "cmd/compile/internal/ssa/rewriteAMD64.go",
+    "delete }",
+    1352018,
+    57959
+   ],
+   [
+    851,
+    0,
+    "cmd/compile/internal/test/testdata/cmpConst_test.go",
+    "delete }",
+    5267,
+    116
+   ],
+   [
+    809,
+    0,
+    "cmd/compile/internal/ssa/rewriteAMD64.go",
+    "insert (",
+    2042878,
+    85421
+   ],
+   [
+    412,
+    0,
+    "cmd/vendor/golang.org/x/sys/windows/zsyscall_windows.go",
+    "delete }",
+    88704,
+    1431
+   ],
+   [
+    405,
+    0,
+    "cmd/cgo/internal/test/callback.go",
+    "delete }",
+    83795,
+    1377
+   ],
+   [
+    306,
+    0,
+    "cmd/compile/internal/ssa/rewriteARM.go",
+    "insert {",
+    52872,
+    2202
+   ],
+   [
+    235,
+    0,
+    "cmd/compile/internal/ssa/rewritegeneric.go",
+    "insert {",
+    72604,
+    3006
+   ],
+   [
+    231,
+    0,
+    "syscall/zsyscall_darwin_amd64.go",
+    "delete }",
+    4032,
+    134
+   ],
+   [
+    227,
+    0,
+    "syscall/zsyscall_darwin_arm64.go",
+    "delete }",
+    4957,
+    164
+   ],
+   [
+    220,
+    0,
+    "cmd/compile/internal/ssa/rewriteARM64.go",
+    "delete }",
+    414909,
+    17998
+   ]
+  ]
+ },
+ "both_lost_collateral": 52,
+ "only_gramide_lost_collateral": 243,
+ "only_tree_sitter_lost_collateral": 5234,
+ "seconds": 240.0
+}

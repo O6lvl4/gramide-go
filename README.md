@@ -74,8 +74,8 @@ whole parse ([evidence](docs/evidence/incremental-go-net-http-server.json),
 
 | `net/http/server.go` | gramide | tree-sitter |
 |---|---:|---:|
-| median | 12 µs | 151 µs |
-| 90th percentile | 19 µs | 176 µs |
+| median | 12 µs | 150 µs |
+| 90th percentile | 18 µs | 174 µs |
 | a whole parse, for scale | 1.5 ms | |
 
 Over `GOROOT/src`, ten random edits in each of the 5,911 files that hold a
@@ -84,6 +84,30 @@ for token and node for node against a whole parse of the same text) gave no
 difference; one edit was read as a whole file ([evidence](docs/evidence/incremental-corpus-goroot-src.json)).
 `ci/incremental_check.py` runs this; `reparse --edit START:OLD_END:NEW_END --new FILE`
 is the one-edit command.
+
+### A broken file
+
+An editor's file is broken more often than not. `bench/recovery.py` breaks every
+file of the corpus in four ways, one at a time — a `{` typed at the start of a
+word, a `}` deleted, a `)` deleted, a `(` typed — and compares what each tool
+still lists (gramide's `outline`, which reads the recovered parse; tree-sitter's
+tree through the same harness, `--recover`) with its own listing of the whole
+file, by kind, name and start line. A declaration whose lines hold the break is
+expected to go; a break is *clean* when nothing else is lost and nothing new
+appears ([evidence](docs/evidence/recovery-goroot-src.json), [how it recovers](https://github.com/O6lvl4/gramide/blob/main/docs/recovery.md)):
+
+| Go `src/`: 8,010 files, 30,927 breaks | gramide | tree-sitter |
+|---|---:|---:|
+| declarations kept, all breaks | 99.5% | 91.1% |
+| clean breaks (nothing lost beyond the break, nothing invented) | 99.0% | 82.9% |
+| clean breaks, `insert {` | 98.8% | 91.6% |
+| clean breaks, `delete }` | 99.3% | 48.2% |
+| clean breaks, `delete )` | 99.5% | 92.3% |
+| clean breaks, `insert (` | 98.7% | 97.0% |
+
+gramide is ahead on every kind of break; a `}` deleted is the large one. The
+next `func` is where gramide resumes, so one function is lost, where
+tree-sitter's cost model nests the rest of the file into the open body.
 
 ## How it is written
 

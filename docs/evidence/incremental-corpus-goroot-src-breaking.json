@@ -9,16 +9,16 @@
     "testdata"
   ],
   "edits_per_file": 10,
-  "breaking": false,
+  "breaking": true,
   "files": 6818,
-  "checked": 5911,
-  "edits": 59110,
+  "checked": 5887,
+  "edits": 58870,
   "mismatches": 0,
-  "fallbacks": 1,
+  "fallbacks": 3986,
   "fallback_reasons": {
     "no_lex": 0,
     "no_head": 0,
-    "no_parse": 1,
+    "no_parse": 3986,
     "no_site": 0,
     "root_own": 0,
     "error_near": 0
@@ -932,6 +932,103 @@
     "vendor/golang.org/x/sys/cpu/parse.go",
     "weak/doc.go"
   ],
-  "errors": [],
+  "errors": [
+    {
+      "path": "cmd/cgo/internal/testsanitizers/empty_test.go",
+      "error": "no recovery: 8:15: unexpected `{` (expected `;`, newline)"
+    },
+    {
+      "path": "cmd/compile/internal/reflectdata/alg_test.go",
+      "error": "edit 9: no parse at token 0 of 87: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2021 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage reflectda{ta_test\n\nimport"
+    },
+    {
+      "path": "cmd/internal/bootstrap_test/overlaydir_test.go",
+      "error": "edit 9: no parse at token 0 of 407: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2019 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage bootst{yrap_test\n\nimport"
+    },
+    {
+      "path": "cmd/vendor/golang.org/x/tools/go/analysis/passes/testinggoroutine/doc.go",
+      "error": "no recovery: 22:15: unexpected `{` (expected `;`, newline)"
+    },
+    {
+      "path": "cmd/vendor/golang.org/x/tools/go/analysis/passes/testinggoroutine/testinggoroutine.go",
+      "error": "edit 9: no parse at token 0 of 36: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2020 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage testin{bggoroutine\n\nimpor"
+    },
+    {
+      "path": "cmd/vendor/golang.org/x/tools/internal/typesinternal/recv.go",
+      "error": "edit 9: no parse at token 0 of 96: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2024 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage typesi{uinternal\n\nimport "
+    },
+    {
+      "path": "cmd/vendor/golang.org/x/tools/internal/typesinternal/varkind.go",
+      "error": "edit 9: no parse at token 0 of 15: 7:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2024 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build go1.25\n\npackage typesi"
+    },
+    {
+      "path": "cmd/vendor/golang.org/x/tools/internal/typesinternal/varkind_go124.go",
+      "error": "edit 9: no parse at token 0 of 12: 7:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2024 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build !go1.25\n\npackage types"
+    },
+    {
+      "path": "crypto/internal/cryptotest/chacha20poly1305_wycheproof_test.go",
+      "error": "edit 9: no parse at token 0 of 531: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2026 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage crypto{vst_test\n\nimport "
+    },
+    {
+      "path": "embed/internal/embedtest/embedx_test.go",
+      "error": "edit 9: no parse at token 0 of 39: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2020 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage embedt{west_test\n\nimport "
+    },
+    {
+      "path": "go/constant/example_test.go",
+      "error": "edit 9: no parse at token 0 of 198: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2018 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage consta{znt_test\n\nimport "
+    },
+    {
+      "path": "index/suffixarray/example_test.go",
+      "error": "edit 9: no parse at token 0 of 68: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2016 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage suffix{vrray_test\n\nimport"
+    },
+    {
+      "path": "internal/platform/zosarch_test.go",
+      "error": "edit 9: no parse at token 0 of 41: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2023 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage platfo{mrrm_test\n\nimport "
+    },
+    {
+      "path": "internal/synctest/synctest_test.go",
+      "error": "edit 9: no parse at token 0 of 227: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2024 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage syncte{st_test\n\nimport ("
+    },
+    {
+      "path": "mime/multipart/example_test.go",
+      "error": "edit 9: no parse at token 0 of 214: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2014 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage multip{iyart_test\n\nimpor"
+    },
+    {
+      "path": "mime/quotedprintable/writer.go",
+      "error": "edit 9: no parse at token 0 of 13: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2015 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage quoted{intable\n\nimport \"i"
+    },
+    {
+      "path": "net/http/cookiejar/example_test.go",
+      "error": "edit 9: no parse at token 0 of 327: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2016 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage cookie{viajar_test\n\nimpo"
+    },
+    {
+      "path": "net/internal/socktest/main_unix_test.go",
+      "error": "edit 9: no parse at token 0 of 34: 7:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2015 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build !js && !plan9 && !wasi"
+    },
+    {
+      "path": "path/filepath/example_test.go",
+      "error": "edit 9: no parse at token 0 of 62: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2017 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage filepa{oth_test\n\nimport ("
+    },
+    {
+      "path": "path/filepath/example_unix_test.go",
+      "error": "edit 9: no parse at token 0 of 34: 7:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2013 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build !windows && !plan9\n\npa"
+    },
+    {
+      "path": "path/filepath/example_unix_walk_test.go",
+      "error": "edit 9: no parse at token 0 of 105: 7:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2018 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\n//go:build !windows && !plan9\n\np"
+    },
+    {
+      "path": "testing/synctest/helper_test.go",
+      "error": "edit 9: no parse at token 0 of 36: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2025 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage syncte{dst_test\n\nimport \""
+    },
+    {
+      "path": "text/template/example_test.go",
+      "error": "edit 9: no parse at token 0 of 134: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2011 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage templa{ete_test\n\nimport "
+    },
+    {
+      "path": "text/template/examplefunc_test.go",
+      "error": "edit 9: no parse at token 0 of 109: 5:1: unexpected `package` (expected `func`, `var`, `const`, `type`) in: // Copyright 2012 The Go Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style\n// license that can be found in the LICENSE file.\n\npackage templa{uyte_test\n\nimport"
+    }
+  ],
   "mismatched_files": []
 }
