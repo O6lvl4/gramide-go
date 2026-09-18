@@ -74,8 +74,8 @@ whole parse ([evidence](docs/evidence/incremental-go-net-http-server.json),
 
 | `net/http/server.go` | gramide | tree-sitter |
 |---|---:|---:|
-| median | 12 µs | 151 µs |
-| 90th percentile | 19 µs | 176 µs |
+| median | 10 µs | 150 µs |
+| 90th percentile | 16 µs | 175 µs |
 | a whole parse, for scale | 1.5 ms | |
 
 Over `GOROOT/src`, ten random edits in each of the 5,911 files that hold a
