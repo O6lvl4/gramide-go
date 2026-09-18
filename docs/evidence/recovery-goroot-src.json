@@ -19,69 +19,61 @@
   "total": {
    "breaks": 30927,
    "baseline": 465450,
-   "kept": 464016,
-   "lost_touching": 458,
-   "lost_collateral": 976,
-   "spurious": 1,
-   "clean_breaks": 30669,
-   "no_error_reported": 30675,
-   "error_nodes": 35410
+   "kept": 464294,
+   "lost_touching": 423,
+   "lost_collateral": 733,
+   "spurious": 0,
+   "clean_breaks": 30723,
+   "no_error_reported": 30655,
+   "error_nodes": 25361
   },
   "by_break": [
    {
     "breaks": 8010,
     "baseline": 116667,
-    "kept": 116043,
+    "kept": 116057,
     "lost_touching": 225,
-    "lost_collateral": 399,
+    "lost_collateral": 385,
     "spurious": 0,
-    "clean_breaks": 7914,
-    "no_error_reported": 7891,
-    "error_nodes": 6342
+    "clean_breaks": 7919,
+    "no_error_reported": 7889,
+    "error_nodes": 12909
    },
    {
     "breaks": 7330,
     "baseline": 115627,
-    "kept": 115483,
-    "lost_touching": 17,
-    "lost_collateral": 127,
-    "spurious": 1,
-    "clean_breaks": 7286,
+    "kept": 115601,
+    "lost_touching": 1,
+    "lost_collateral": 25,
+    "spurious": 0,
+    "clean_breaks": 7324,
     "no_error_reported": 7330,
-    "error_nodes": 9407
+    "error_nodes": 8515
    },
    {
     "breaks": 7577,
     "baseline": 116489,
-    "kept": 116291,
-    "lost_touching": 27,
-    "lost_collateral": 171,
+    "kept": 116415,
+    "lost_touching": 32,
+    "lost_collateral": 42,
     "spurious": 0,
-    "clean_breaks": 7555,
-    "no_error_reported": 7577,
-    "error_nodes": 5222
+    "clean_breaks": 7569,
+    "no_error_reported": 7567,
+    "error_nodes": 1484
    },
    {
     "breaks": 8010,
     "baseline": 116667,
-    "kept": 116199,
-    "lost_touching": 189,
-    "lost_collateral": 279,
+    "kept": 116221,
+    "lost_touching": 165,
+    "lost_collateral": 281,
     "spurious": 0,
-    "clean_breaks": 7914,
-    "no_error_reported": 7877,
-    "error_nodes": 14439
+    "clean_breaks": 7911,
+    "no_error_reported": 7869,
+    "error_nodes": 2453
    }
   ],
   "worst": [
-   [
-    100,
-    0,
-    "internal/types/testdata/check/unions.go",
-    "delete )",
-    977,
-    23
-   ],
    [
     90,
     0,
@@ -99,6 +91,14 @@
     65
    ],
    [
+    30,
+    0,
+    "go/types/decl.go",
+    "delete )",
+    24892,
+    798
+   ],
+   [
     22,
     0,
     "unique/handle_test.go",
@@ -107,20 +107,12 @@
     5
    ],
    [
-    19,
+    20,
     0,
-    "internal/types/testdata/spec/assignability.go",
-    "insert {",
-    4639,
-    219
-   ],
-   [
-    18,
-    0,
-    "runtime/importx_test.go",
+    "simd/archsimd/internal/simd_test/simd_test.go",
     "delete }",
-    669,
-    30
+    1380,
+    59
    ],
    [
     17,
@@ -131,12 +123,12 @@
     22
    ],
    [
-    15,
+    16,
     0,
-    "go/internal/gcimporter/testdata/exports.go",
-    "delete }",
-    1106,
-    58
+    "internal/types/testdata/spec/assignability.go",
+    "insert {",
+    4639,
+    219
    ],
    [
     13,
@@ -152,6 +144,14 @@
     "cmd/compile/internal/ssa/likelyadjust.go",
     "insert {",
     168,
+    5
+   ],
+   [
+    11,
+    0,
+    "runtime/testdata/testgoroutineleakprofile/goker/serving2137.go",
+    "insert (",
+    154,
     5
    ]
   ]
@@ -297,8 +297,8 @@
    ]
   ]
  },
- "both_lost_collateral": 48,
- "only_gramide_lost_collateral": 209,
- "only_tree_sitter_lost_collateral": 5238,
- "seconds": 238.1
+ "both_lost_collateral": 11,
+ "only_gramide_lost_collateral": 193,
+ "only_tree_sitter_lost_collateral": 5275,
+ "seconds": 377.3
 }

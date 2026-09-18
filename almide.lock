@@ -1,3 +1,3 @@
 # almide.lock — auto-generated, do not edit
 
-gramide = { git = "https://github.com/O6lvl4/gramide", ref = "v0.2.9", commit = "3d4659c5659b8d49649d427e352a7588d1265871" }
+gramide = { git = "https://github.com/O6lvl4/gramide", ref = "v0.2.10", commit = "1e7171603d5ae41bd47ea8f3503ce6ac856014f2" }
