@@ -1,7 +1,10 @@
 [package]
 name = "gramide_go"
-version = "0.1.14"
+version = "0.1.15"
 edition = "2026"
 
 [dependencies]
-gramide = { git = "https://github.com/O6lvl4/gramide", tag = "v0.2.11" }
+gramide = { git = "https://github.com/O6lvl4/gramide", tag = "v0.2.12" }
+
+[trust]
+owners = ["github.com/o6lvl4"]
